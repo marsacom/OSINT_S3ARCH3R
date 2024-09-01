@@ -1,6 +1,6 @@
 # OSINT_S3ARCH3R
 
-    ![logo](https://github.com/marsacom/OSINT_S3ARCH3R/blob/main/img/image.png)
+![logo](https://github.com/marsacom/OSINT_S3ARCH3R/blob/main/img/image.png)
 
 This is a script to run automatic searches through google to find URLs, given a search term/google-dork, for use in OSINT & Google Dorking!
 
