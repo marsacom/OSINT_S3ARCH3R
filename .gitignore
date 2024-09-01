@@ -1,0 +1,9 @@
+# Ignore output txt files
+*.txt
+
+# Ignore cookies files
+.*
+!.gitignore
+
+# Ignore img files
+img\
