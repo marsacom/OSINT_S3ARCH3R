@@ -2,5 +2,5 @@
 .*
 !.gitignore
 
-# Ignore img files
-\img\
+# Ignore img folder
+/img
