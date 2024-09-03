@@ -56,3 +56,5 @@ Step 2. ``pip3 install -r requirements.txt``
 This script allows you to automatically search Google, given this, Google could block your IP from searching due to the automation of the script seen as a potential DDOS attack with all the HTTP requests. This is why the *pause* is automatically set to 2. If you want to change that to make the script run faster you can via ``-p``/``--pause``. Likewise if you would like to slow down the time between requests to be extra safe you can make this vaule higher.
 
 This script is NOT to be used to perform malicous activity. Any and all such activities are highly discouraged. You and ONLY you are responsible for your actions when using this script!
+
+Author : Brayden Kukla 2024
