@@ -56,7 +56,7 @@ else:
 if args.output != None:
 	f=open(args.output, 'w')
 else:
-	FileNotFoundError
+	raise FileNotFoundError
 
 print(f'{Fore.CYAN}{Style.BRIGHT}\nGenerating ' + str(args.number) + ' link(s) maching the term: ' + args.term + ' ... ')
 print('-----------------------------------------------------------------------')
