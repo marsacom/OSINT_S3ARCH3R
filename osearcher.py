@@ -55,6 +55,8 @@ else:
 
 if args.output != None:
 	f=open(args.output, 'w')
+else:
+	FileNotFoundError
 
 print(f'{Fore.CYAN}{Style.BRIGHT}\nGenerating ' + str(args.number) + ' link(s) maching the term: ' + args.term + ' ... ')
 print('-----------------------------------------------------------------------')
@@ -69,7 +71,7 @@ for i in search(args.term, tld='com', num=args.number, stop=args.number, pause=p
 		print('UNKNOWN LINK')
 	else:
 		print(Fore.WHITE + i)
-		if not f.closed:
+		if not FileNotFoundError:
 			f.write(i + '\n')
 			if c == args.number:
 				stop = datetime.datetime.now()
