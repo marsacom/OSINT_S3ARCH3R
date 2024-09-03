@@ -17,7 +17,7 @@
 
 # EXAMPLE USAGE: python3 sqlsearch.py -t "John Doe" -n 10 -p 3 -o johndoe.txt
 
-# Author: Brayden Kukla 2022 
+# Author: Brayden Kukla 2024 
 
 import sys	
 import colorama
