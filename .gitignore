@@ -1,3 +1,6 @@
 # Ignore cookies file(s)
 .*
 !.gitignore
+
+# Ignore img/
+img/
