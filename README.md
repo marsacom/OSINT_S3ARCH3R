@@ -10,15 +10,15 @@ Step 1. ``git clone https://github.com/marsacom/OSINT_S3ARCH3R.git``
 Step 2. ``pip3 install -r requirements.txt``
 
 ## Usage
-``python3 osearcher.py -t YOUR-SEARCH -n NUM-OF-SEARCHES (-p PAUSE-INTERVAL) (-o OUTPUT-FILE)``
+``python3 osearcher.py -t YOUR-SEARCH -n NUM-OF-SEARCHES (-p PAUSE-INTERVAL) (-o OUTPUT-FILE) (-tld TOP-LEVEL-DOMAIN)``
 
 ## Example Usage
 #### OSINT
-``python3 osearcher.py -t "John Doe" -n 20 -p 4 -o johndoe.txt``
+``python3 osearcher.py -t "John Doe" -n 20 -p 4 -o johndoe.txt -tld "org"``
 #### Google Dorks
-``python3 osearcher.py -t inurl:"store/products.php?productid=" -n 25 -p 5 -o productsphp.txt`` 
+``python3 osearcher.py -t inurl:"store/products.php?productid=" -n 25 -p 5 -o productsphp.txt -tld "edu"`` 
 
-## Arguements
+## Arguments
 > ``-t``/``--term`` : 
 >
 > #### **The term/google-dork to search for...**
@@ -41,7 +41,13 @@ Step 2. ``pip3 install -r requirements.txt``
 >
 > #### **OPTIONAL: The name of the file to output results too...**
 >
-> - ***ex. -o results.txt, -o output.txt***
+> - ***ex. -o results.txt***
+>
+> ``-tld``/``--tld`` : 
+>
+> #### **OPTIONAL: The top level domain (TLD) to limit search results to. Default is 'com'**
+>
+> - ***ex. -tld "org"***
 
 # Future Updates & Features
 * Search for ***multiple*** specific terms/dorks
