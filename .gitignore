@@ -1,3 +1,6 @@
 # Ignore cookies files
 .*
 !.gitignore
+
+# Ignore dist
+dist/
