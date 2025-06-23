@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # ┏━━━┳━━━┳━━┳━┓╋┏┳━━━━┓┏━━━┳━━━┳━━━┳━━━┳━━━┳┓╋┏┳━━━┳━━━┳━━━┓ #
 # ┃┏━┓┃┏━┓┣┫┣┫┃┗┓┃┃┏┓┏┓┃┃┏━┓┃┏━┓┃┏━┓┃┏━┓┃┏━┓┃┃╋┃┃┏━┓┃┏━━┫┏━┓┃ #
@@ -43,39 +41,43 @@ parser.add_argument('-p', '--pause', type=int, default=2, help='OPTIONAL: The la
 parser.add_argument('-o', '--output', type=str, help='OPTIONAL: The name of the file to output results too, ex. -o results.txt, -o output.txt', required=False)
 parser.add_argument('-tld', '--topleveldomain', type=str, default='com', help='OPTIONAL: The top-level domain to search, ex. -tld com, -tld uk, -tld ca (Default is "com")', required=False)
 
-
 args = parser.parse_args()
 
-if args.output:
-	f=open(args.output, 'w')
+try:
+	if args.term.strip() == '' or args.number <= 0 : # Only searching if they actually passed a term and/or number of results 
+		print(f'{Fore.RED}{Style.BRIGHT}No search term and/or number of results to generate specified, exiting script...')
+		exit(0)	
 
-print(f'{Fore.CYAN}{Style.BRIGHT}\nGenerating {args.number} link(s) maching the term: {args.term}... ')
-print('-----------------------------------------------------------------------')
+	print(f'{Fore.CYAN}{Style.BRIGHT}\nGenerating {args.number} link(s) maching the term: {args.term}... ')
+	print('-----------------------------------------------------------------------')
 
-start = datetime.datetime.now()	# Get start time of search 
-c = 0	# Initialize counter for number of results found
+	start = datetime.datetime.now()	# Get start time of search 
+	c = 0	# Initialize counter for number of results found
+	urls = set() # Initialize set to store unique URLs
 
-try: 
 	# Searches google with the provided parameters 
 	for i in search(args.term, tld=args.topleveldomain, num=args.number, stop=args.number, pause=args.pause):
 		c += 1
-		if args.term == '':
-			print('UNKNOWN LINK')
-			exit(1)
-		else:
-			print(Fore.WHITE + i)
-		
-			if args.output:		
-				f.write(i + '\n')
 
+		print(Fore.WHITE + i)
+	
+		if i not in urls: # Check for duplicates
+			urls.add(i)
+			
 	stop = datetime.datetime.now()
 	elaptime = (stop - start).total_seconds() * 1000
 	print(f'{Fore.GREEN}{Style.BRIGHT}\nSearch completed in {elaptime:.2f} milliseconds, found {c} results matching term: {args.term}... ')
 
 	if args.output:
-		print('\nResults saved to: ' + str(args.output) + '... ')
+		f=open(args.output, 'w')
+
+		for url in urls:
+			f.write(url + '\n')
+
 		f.write('\nSearch completed in ' + str(elaptime) + ' milliseconds, found ' + str(c) + ' results matching term: ' + str(args.term) + '\n')
-		f.close()	
+		f.close()
+		print(f'{Fore.GREEN}{Style.NORMAL}\nResults saved to: ' + str(args.output) + '... ')
+
 except KeyboardInterrupt:
 	print(f'{Fore.RED}{Style.BRIGHT}\n\nInterrupted by user, exiting script...')
 	sys.exit()
