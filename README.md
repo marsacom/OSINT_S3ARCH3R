@@ -8,6 +8,7 @@ This Python script automates Google searches for OSINT (Open Source Intelligence
 - Uses Google Dorking syntax (`intext:`) for targeted searches.
 - Fetches and parses web page content for each result.
 - Performs sentiment analysis using TextBlob.
+- User agent rotation and proxy support to prevent Google from blocking requests
 - Flags pages mentioning crime-related keywords.
 - Classifies sources (social, news, informational, government, education, forum, other).
 - Outputs results to a JSON file.
