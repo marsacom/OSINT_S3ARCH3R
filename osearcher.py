@@ -17,6 +17,8 @@
 
 # Author: Brayden Kukla 2024 
 
+print('Initializing OSINT_SEARCHER, please wait...')
+
 import sys	
 import colorama
 import datetime
@@ -142,6 +144,7 @@ def osint_search(term, number, pause, location):
 		print(f"{Fore.WHITE}{url} | {Fore.YELLOW}{data['source_type']} | {Fore.GREEN}Conf:{data['confidence']}")
 
 try:
+	print(f'{Fore.GREEN}{Style.BRIGHT}Script initilization successful!')
 	term = in_quotes(input(f'{Fore.CYAN}{Style.BRIGHT}Enter search term (e.g., "John Doe"): ').strip())
 	number = int(input(f'{Fore.CYAN}{Style.BRIGHT}Enter number of results to generate (e.g., 10): ').strip())
 	location = in_quotes(input(f'{Fore.CYAN}{Style.BRIGHT}Enter location filter (optional, press Enter to skip): ').strip()) or None
@@ -150,15 +153,15 @@ try:
 	pause = int(input(f'{Fore.CYAN}{Style.BRIGHT}Enter pause between requests (in seconds, default 2): ').strip() or 2)
 
 	if term != '' and number > 0 : # Only searching if they actually passed a term and/or number of results 
-		print(f'{Fore.CYAN}{Style.BRIGHT}\nGenerating {number} link(s) maching the term: {term}... ')
+		print(f'{Fore.CYAN}{Style.BRIGHT}\nGenerating {number} link(s) maching the term: {term}' + (f' and location: {location}' if location is not None else ''))
 		print('-----------------------------------------------------------------------')
 		start = datetime.datetime.now()  # Get start time of search 
-		
+
 		osint_search(term, number, pause, location)
 
 		stop = datetime.datetime.now()
 		elaptime = (stop - start).total_seconds() 
-		print(f'{Fore.GREEN}{Style.BRIGHT}\nSearch completed in {elaptime:.2f} seconds, found {count} results matching term: {term}... ')
+		print(f'{Fore.GREEN}{Style.BRIGHT}\nSearch completed in {elaptime:.2f} seconds, found {count} results matching term: {term}' + (f' and location: {location}' if location is not None else ''))
 
 		if output:
 			with open(output, 'w') as f:

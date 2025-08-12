@@ -37,7 +37,7 @@ Run the script from the command line:
 ```bash
 python osearcher.py
 ```
-**OR (if on Windows, download from [releases](https://github.com/marsacom/OSINT_S3ARCH3R/releases/download/release/osearcher.exe))**
+**OR (if on Windows, download from [releases](https://github.com/marsacom/OSINT_S3ARCH3R/releases/download/v1.1/osearcher.exe))**
 ```bash
 osearcher.exe
 ```

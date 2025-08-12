@@ -2,9 +2,11 @@
 .*
 !.gitignore
 
-# Ignore dist
+# Ignore compiled Python files
 dist/
+*.exe
 
 # Ignore test results
 *.json
 *.log
+
