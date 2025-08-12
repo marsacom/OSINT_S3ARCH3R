@@ -1,7 +1,10 @@
-# Requirements for SQLSearch
+# Requirements for OSINT_S3ARCH3R
 
 colorama == 0.4.6
 
 google == 3.0.0
 
-beautifulsoup4 == 4.12.3
+bs4 == 4.12.3
+
+textblob == 0.19.0
+

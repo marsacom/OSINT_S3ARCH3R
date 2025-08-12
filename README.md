@@ -1,66 +1,77 @@
-# OSINT_S3ARCH3R
+# OSINT Google Dorking Search Script
 
-![logo](https://github.com/marsacom/OSINT_S3ARCH3R/blob/main/img/image.png)
+## Overview
+This Python script automates Google searches for OSINT (Open Source Intelligence) and Google Dorking. It retrieves URLs matching a search term, fetches page content, analyzes sentiment, detects crime-related keywords, and classifies the source type. Results are saved in JSON format for further analysis.
 
-This is a script to run automatic searches through google to find URLs, given a search term/google-dork, for use in OSINT & Google Dorking!
+## Features
+- Accepts search term, number of results, pause between requests, output file name, and location filter.
+- Uses Google Dorking syntax (`intext:`) for targeted searches.
+- Fetches and parses web page content for each result.
+- Performs sentiment analysis using TextBlob.
+- Flags pages mentioning crime-related keywords.
+- Classifies sources (social, news, informational, government, education, forum, other).
+- Outputs results to a JSON file.
+
+## Requirements
+- Python 3.7+
+- Packages: `requests`, `colorama`, `googlesearch-python`, `textblob`, `beautifulsoup4`
+
+Install dependencies:
+```bash
+pip install requests colorama googlesearch-python textblob beautifulsoup4
+```
+**OR**
 
 ## Installation
-Step 1. ``git clone https://github.com/marsacom/OSINT_S3ARCH3R.git``
-
-Step 2. ``pip3 install -r requirements.txt``
+**Step 1**
+```bash
+git clone https://github.com/marsacom/OSINT_S3ARCH3R.git
+```    
+**Step 2**
+```bash
+pip3 install -r requirements.txt
+```
 
 ## Usage
-``python3 osearcher.py -t YOUR-SEARCH -n NUM-OF-SEARCHES (-p PAUSE-INTERVAL) (-o OUTPUT-FILE) (-tld TOP-LEVEL-DOMAIN)``
+Run the script from the command line:
+```bash
+python osearcher.py
+```
+**OR (if on Windows, download from [releases](https://github.com/marsacom/OSINT_S3ARCH3R/releases/download/release/osearcher.exe))**
+```bash
+osearcher.exe
+```
 
-## Example Usage
-#### OSINT
-``python3 osearcher.py -t "John Doe" -n 20 -p 4 -o johndoe.txt -tld "org"``
-#### Google Dorks
-``python3 osearcher.py -t inurl:"store/products.php?productid=" -n 25 -p 5 -o productsphp.txt -tld "edu"`` 
+You will be prompted for:
+- Search term (e.g., "John Doe")
+- Number of results to generate (e.g., 10)
+- Location filter (optional, e.g, California)
+- Output file name (optional, e.g., johndoe_results)
+- Pause between requests (seconds, default 2)
 
-## Arguments
-> ``-t``/``--term`` : 
->
-> #### **The term/google-dork to search for...**
->
-> - ***ex. -t "YOUR TARGETS NAME" or -t inurl:"store/products.php?productid=" (Use "" for EXACT results)***
->
-> ``-n``/``--number`` : 
->
-> #### **The number of URLs to generate...** 
->
-> - ***ex. -n 10***
->
-> ``-p``/``--pause`` : 
->
-> #### **OPTIONAL: The lapse to wait between HTTP requests, measured in ***seconds***. Default is 2...**
->
-> - ***ex. -p 4 (too short may cause Google to BLOCK your IP)***
->
-> ``-o``/``--output`` : 
->
-> #### **OPTIONAL: The name of the file to output results too...**
->
-> - ***ex. -o results.txt***
->
-> ``-tld``/``--tld`` : 
->
-> #### **OPTIONAL: The top level domain (TLD) to limit search results to. Default is 'com'**
->
-> - ***ex. -tld "org"***
+Example:
+```
+Enter search term (e.g., "John Doe"): John Doe
+Enter number of results to generate (e.g., 10): 10
+Enter location filter (optional, press Enter to skip): New York
+Enter output file name (optional, press Enter to skip): johndoe_results
+Enter pause between requests (in seconds, default 2): 2
+```
 
-# Future Updates & Features
-* Search for ***multiple*** specific terms/dorks
+## Output
+Results are saved in a JSON file with fields:
+- `url`: The result URL
+- `title`: Page title
+- `snippet`: Text snippet from the page
+- `source_type`: Classified source type(s)
+- `mentions_crime`: True/False if crime keywords found
+- `sentiment`: The sentiment value in your results is a score calculated by the TextBlob library, which analyzes the text content of each web page snippet. It ranges from -1.0 (very negative) to +1.0 (very positive). A value close to 0 means the text is neutral. Positive values (e.g., 0.16, 0.3) indicate the text is generally positive or optimistic. Negative values (e.g., -0.5) would indicate the text is negative or pessimistic. In your results, the sentiment helps you quickly see if the page content is positive, negative, or neutral.
+- `confidence`: The confidence value in your results is a custom score you calculate for each URL. It is meant to estimate how relevant or significant the result is, based on crime mentions and sentiment. If the page mentions crime (crime_flag is True), confidence is set to 0.7. Otherwise, confidence is calculated as 0.5 + abs(sentiment)/2, so it increases with stronger positive or negative sentiment. This value helps you quickly gauge which results are more likely to be important or noteworthy for your search.
 
-    > Ability to search for multiple specific terms/dorks will allow for more refined search results
+## Notes
+- The script is for legal, ethical OSINT research only.
+- Google may block requests if run too quickly or too often.
+- For best results, use specific search terms and reasonable pause values.
 
-* Proxy support     
-
-    > Proxy support will provide advanced measures for avoiding detection from Google while running the script
-
-# DISCLAIMER
-This script allows you to automatically search Google, given this, Google could block your IP from searching due to the automation of the script seen as a potential DDOS attack with all the HTTP requests. This is why the *pause* is automatically set to 2. If you want to change that to make the script run faster you can via ``-p``/``--pause``. Likewise if you would like to slow down the time between requests to be extra safe you can make this vaule higher.
-
-This script is NOT to be used to perform malicous activity. Any and all such activities are highly discouraged. You and ONLY you are responsible for your actions when using this script!
-
-Author : Brayden Kukla 2024
+## Author
+Brayden Kukla, 2024

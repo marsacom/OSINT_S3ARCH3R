@@ -4,3 +4,7 @@
 
 # Ignore dist
 dist/
+
+# Ignore test results
+*.json
+*.log
