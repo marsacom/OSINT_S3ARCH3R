@@ -17,12 +17,6 @@ This Python script automates Google searches for OSINT (Open Source Intelligence
 - Python 3.7+
 - Packages: `requests`, `colorama`, `googlesearch-python`, `textblob`, `beautifulsoup4`
 
-Install dependencies:
-```bash
-pip install requests colorama googlesearch-python textblob beautifulsoup4
-```
-**OR**
-
 ## Installation
 **Step 1**
 ```bash
